@@ -1,50 +1,101 @@
 # OCR Project — Production-Oriented Development Plan
-Project Vision
 
-Build a modular, production-ready Optical Character Recognition (OCR) system with:
+##  Project Plan
 
-    Phase 1 → Stable, usable MVP
+Build a modular, production-ready Optical Character Recognition (OCR) system structured in two phases:
 
-    Phase 2 → Optimized, scalable, production-grade system
+- **Phase 1 → Stable, usable MVP**
+- **Phase 2 → Optimized, scalable, production-grade system**
 
-This Project is structured to optimize from basic MVP to a working prototype
+This project evolves from a functional prototype to a high-performance document intelligence service.
 
+---
 
-# Phase 1 — MVP (Functional, Stable, Demonstrable
-Objective
+#  Phase 1 — MVP (Functional, Stable, Demonstrable)
+
 
 Deliver a working OCR API that:
 
-Accepts image input (printed or handwritten)
+- Accepts image input (printed or handwritten)
+- Extracts text reliably
+- Returns structured JSON output
+- Optionally exports extracted text into a document
 
-Extracts text reliably
+> No over-optimization. No premature scaling.
 
-Returns structured JSON output
+---
 
-Can optionally export extracted text into a document
+##  Phase 1 Architecture
 
-No over-optimization. No premature scaling
-
-Phase 1 Architecture
-Core Pipeline
+### Core Pipeline
 
 Image Upload
-   ↓
+↓
 Basic Preprocessing (RGB conversion)
-   ↓
+↓
 TrOCR Model (Printed / Handwritten)
-   ↓
+↓
 Extracted Text
-   ↓
+↓
 Return JSON Response
 
 
-Remove complexity:
+---
 
-No Tesseract segmentation
+##  Design Principles - (Phase 1)
 
-No multi-stage detection logic
+To keep the MVP clean and stable:
 
-No fallback heuristics
+- ❌ No Tesseract segmentation
+- ❌ No multi-stage detection logic
+- ❌ No fallback heuristics
+- ❌ No complex layout handling
+- ✅ Single responsibility: text recognition
 
-Single responsibility: text recognition.
+The goal is reliability, not sophistication.
+
+---
+
+##  API Specification
+
+### Endpoint: `/ocr/extract`
+
+**Method:** `POST`  
+**Input:**  
+- Image file (`.png`, `.jpg`, `.jpeg`)
+- Model selection (`printed` or `handwritten`)
+
+**Response Format:**
+
+```json
+{
+  "extracted_text": "Recognized text from image",
+  "model_used": "printed"
+}
+```
+
+# Phase 2 — Optimization & Production Architecture
+Phase 2 introduces:
+
+Image preprocessing (deskew, contrast normalization)
+
+Deep-learning text detection (CRAFT / DBNet)
+
+Batch inference optimization
+
+Model acceleration (FP16 / ONNX)
+
+Confidence scoring
+
+Layout awareness (tables, forms)
+
+Scalable deployment (Docker + queue workers)
+
+Tech Stack (Phase 1)
+
+    Python
+    FastAPI
+    PyTorch
+    HuggingFace Transformers
+    TrOCR (Printed + Handwritten)
+    Uvicorn
