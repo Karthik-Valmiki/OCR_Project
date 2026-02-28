@@ -99,4 +99,3 @@ Tech Stack (Phase 1)
     HuggingFace Transformers
     TrOCR (Printed + Handwritten)
     Uvicorn
-
