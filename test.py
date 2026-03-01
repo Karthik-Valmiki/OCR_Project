@@ -1,6 +1,6 @@
 from pathlib import Path
 from PIL import Image
-from app.services.ocr_sevice import OCRService
+from app.services.ocr_service import OCRService
 
 BASE_DIR = Path(__file__).resolve().parent
 IMAGE_PATH = BASE_DIR / "app" / "sample_1.png"
