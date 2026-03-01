@@ -3,6 +3,10 @@ from app.models.trocr_model import trocr_model
 from app.utils.image_utils import preprocess_image
 import time
 
+"""
+feat(service): implement OCRService orchestration with preprocessing and inference timing
+"""
+
 
 class OCRService:
 
